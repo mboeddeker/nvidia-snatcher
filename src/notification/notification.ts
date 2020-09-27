@@ -11,7 +11,6 @@ import {sendSMS} from './sms';
 import {sendSlackMessage} from './slack';
 import {sendTelegramMessage} from './telegram';
 import {sendTweet} from './twitter';
-import {sendTwilioMessage} from './twilio';
 
 const notifications = Config.notifications;
 
@@ -52,11 +51,6 @@ export function sendNotification(link: Link, store: Store) {
 	if (notifications.telegram.accessToken && notifications.telegram.chatId) {
 		Logger.debug('↗ sending telegram message');
 		sendTelegramMessage(link, store);
-	}
-
-	if (notifications.twilio.accountSid && notifications.twilio.authToken) {
-		Logger.debug('↗ sending twilio message');
-		sendTwilioMessage(link, store);
 	}
 
 	if (notifications.pushBulletApiKey) {
